@@ -1,4 +1,4 @@
-import { GraphQLObjectType, GraphQLSchema, GraphQLID } from 'graphql'
+import { GraphQLObjectType, GraphQLSchema, GraphQLID, GraphQLList } from 'graphql'
 import { AuthorType } from './authorSchema.js'
 import { BookType } from './bookSchema.js'
 
@@ -34,6 +34,18 @@ const RootQuery = new GraphQLObjectType({
             args: { id: { type: GraphQLID }},
             resolve(parent, args) {
                 return authors.find(author => author.id === args.id)
+            }
+        },
+        books: {
+            type: new GraphQLList(BookType),
+            resolve(parent, args) {
+                return books
+            }
+        },
+        authors: {
+            type: new GraphQLList(AuthorType),
+            resolve(parent, args) {
+                return authors
             }
         }
     }
