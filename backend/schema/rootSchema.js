@@ -1,6 +1,7 @@
-import { GraphQLObjectType, GraphQLSchema, GraphQLID, GraphQLList } from 'graphql'
+import { GraphQLObjectType, GraphQLSchema, GraphQLID, GraphQLList, GraphQLString, GraphQLInt } from 'graphql'
 import { AuthorType } from './authorSchema.js'
 import { BookType } from './bookSchema.js'
+import Author from '../models/authorModel.js'
 
 // Dummy Data
 export const books = [
@@ -51,8 +52,28 @@ const RootQuery = new GraphQLObjectType({
     }
 })
 
+const Mutaiton = new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
+        addAuthor: {
+            type: AuthorType,
+            args: {
+                name: { type: GraphQLString },
+                age: { type: GraphQLInt }
+            },
+            resolve(parent, args) {
+                return Author.create({
+                    name: args.name,
+                    age: args.age
+                })
+            }
+        }
+    }
+})
+
 const schema = new GraphQLSchema({
-    query: RootQuery
+    query: RootQuery,
+    mutation: Mutaiton
 })
 
 export {
