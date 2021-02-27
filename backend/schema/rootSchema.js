@@ -1,4 +1,5 @@
 import { GraphQLObjectType, GraphQLSchema, GraphQLID } from 'graphql'
+import { AuthorType } from './authorSchema.js'
 import { BookType } from './bookSchema.js'
 
 // Dummy Data
@@ -6,6 +7,12 @@ const books = [
     { name: 'Name of the Wind', genre: 'Fantasy', id: "1" },
     { name: 'The Final Empire', genre: 'Fantasy', id: "2" },
     { name: 'The Long Earth', genre: 'Sci-Fi', id: "3" }
+]
+
+const authors =  [
+    {name: 'Patrick Rothfuss', age: 44, id:"1"},
+    {name: 'Brandon Sanderson', age: 42, id:"2"},
+    {name: 'Terry Pratchett', age: 66, id:"3"},
 ]
 
 const RootQuery = new GraphQLObjectType({
@@ -17,6 +24,13 @@ const RootQuery = new GraphQLObjectType({
             resolve(parent, args) {
                 // Code to get data from db / other source
                 return books.find(book => book.id === args.id)
+            }
+        },
+        author: {
+            type: AuthorType,
+            args: { id: { type: GraphQLID }},
+            resolve(parent, args) {
+                return authors.find(author => author.id === args.id)
             }
         }
     }
