@@ -1,6 +1,11 @@
 import express from 'express'
 import { graphqlHTTP }  from 'express-graphql'
 import { schema } from './schema/rootSchema.js'
+import dotenv from 'dotenv'
+import connectDB from './config/db.js'
+dotenv.config()
+
+connectDB()
 
 const app = express()
 
