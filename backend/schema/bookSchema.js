@@ -1,9 +1,9 @@
-import { GraphQLObjectType, GraphQLString } from "graphql"
+import { GraphQLID, GraphQLObjectType, GraphQLString } from "graphql"
 
 const BookType = new GraphQLObjectType({
     name: 'Book',
     fields: () => ({
-        id: { type: GraphQLString },
+        id: { type: GraphQLID },
         name: { type: GraphQLString },
         genre: { type: GraphQLString }
     })

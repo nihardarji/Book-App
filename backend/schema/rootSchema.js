@@ -1,4 +1,4 @@
-import { GraphQLObjectType, GraphQLSchema, GraphQLString } from 'graphql'
+import { GraphQLObjectType, GraphQLSchema, GraphQLID } from 'graphql'
 import { BookType } from './bookSchema.js'
 
 // Dummy Data
@@ -13,7 +13,7 @@ const RootQuery = new GraphQLObjectType({
     fields: {
         book: {
             type: BookType,
-            args: { id: { type: GraphQLString }},
+            args: { id: { type: GraphQLID }},
             resolve(parent, args) {
                 // Code to get data from db / other source
                 return books.find(book => book.id === args.id)
