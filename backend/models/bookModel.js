@@ -6,7 +6,8 @@ const bookSchema = mongoose.Schema({
         required: true
     },
     genre: {
-        type: String
+        type: String,
+        required: true
     },
     authorId: {
         type: mongoose.Schema.Types.ObjectId,

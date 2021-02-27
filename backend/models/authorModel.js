@@ -6,7 +6,8 @@ const authorSchema = mongoose.Schema({
         required: true
     },
     age: {
-        type: Number
+        type: Number,
+        required: true
     }
 }, {
     timestamps: true
