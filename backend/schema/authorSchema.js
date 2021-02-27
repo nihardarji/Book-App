@@ -1,6 +1,6 @@
 import { GraphQLID, GraphQLInt, GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql'
 import { BookType } from './bookSchema.js'
-import { books } from './rootSchema.js'
+import Book from '../models/bookModel.js'
 
 const AuthorType = new GraphQLObjectType({
     name: 'Author',
@@ -11,7 +11,7 @@ const AuthorType = new GraphQLObjectType({
         books: {
             type: new GraphQLList(BookType),
             resolve(parent, args) {
-                return books.filter(book => book.authorId === parent.id)
+                return Book.find({ authorId: parent.id })
             }
         }
     })
