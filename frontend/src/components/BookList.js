@@ -2,6 +2,7 @@ import React from 'react'
 import { Alert, ListGroup, ProgressBar } from 'react-bootstrap'
 import { useQuery } from '@apollo/client'
 import { getBooksQuery } from '../queries/queries'
+import { Link } from 'react-router-dom'
 
 const BookList = () => {
 
@@ -17,7 +18,14 @@ const BookList = () => {
                 :
                     <ListGroup className='my-3'>
                         {data.books && data.books.map(book => (
-                            <ListGroup.Item key={book.id}>{book.name}</ListGroup.Item>
+                            <Link 
+                                to={`/book/${book.id}`}
+                                className='list-group-item text-white my-1'
+                                key={book.id}
+                                style={{ textDecoration: 'none' }}
+                            >
+                                {book.name}
+                            </Link>
                         ))}
                     </ListGroup>
             }
