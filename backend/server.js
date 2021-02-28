@@ -3,6 +3,7 @@ import { graphqlHTTP }  from 'express-graphql'
 import { schema } from './schema/rootSchema.js'
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
+import path from 'path'
 dotenv.config()
 
 connectDB()
