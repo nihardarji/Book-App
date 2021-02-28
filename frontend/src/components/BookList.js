@@ -10,6 +10,7 @@ const BookList = () => {
 
     return (
         <>
+            <h2>Books</h2>
             { error ? 
                 <Alert variant='danger'>{error}</Alert>
             :
