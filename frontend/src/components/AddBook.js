@@ -37,7 +37,7 @@ const AddBook = () => {
     }
 
     return (
-        <Form onSubmit={submitHandler}>
+        <Form className='my-2' onSubmit={submitHandler}>
             <Form.Group controlId="bookname">
                 <Form.Label>Book Name</Form.Label>
                 <Form.Control 
